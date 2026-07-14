@@ -27,16 +27,14 @@ except Exception as e:
 # We need to re-create and re-fit them using the original dataset to ensure
 # that input processing for the app matches the training pipeline.
 
-try:
-    # Load the original dataset again to get the data needed for fitting the binarizers and imputer.
-    # Make sure 'dataset.csv' is accessible by the Streamlit application (e.g., in the same directory).
-   import os
+import os
 
-dataset_path = os.path.join(os.path.dirname(__file__), "dataset.csv")
-df_original = pd.read_csv(dataset_path)
+try:
+    dataset_path = os.path.join(os.path.dirname(__file__), "dataset.csv")
+    df_original = pd.read_csv(dataset_path)
 except FileNotFoundError:
     st.error("Error: Original dataset file not found. Make sure 'dataset.csv' is in the same directory.")
-    st.stop() # Stop the app if the dataset is missing
+    st.stop()
 except Exception as e:
     st.error(f"An error occurred while loading the dataset: {e}")
     st.stop()
