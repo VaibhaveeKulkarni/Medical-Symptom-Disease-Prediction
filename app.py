@@ -30,7 +30,10 @@ except Exception as e:
 try:
     # Load the original dataset again to get the data needed for fitting the binarizers and imputer.
     # Make sure 'dataset.csv' is accessible by the Streamlit application (e.g., in the same directory).
-    df_original = pd.read_csv('/content/dataset.csv')
+   import os
+
+dataset_path = os.path.join(os.path.dirname(__file__), "dataset.csv")
+df_original = pd.read_csv(dataset_path)
 except FileNotFoundError:
     st.error("Error: Original dataset file not found. Make sure 'dataset.csv' is in the same directory.")
     st.stop() # Stop the app if the dataset is missing
